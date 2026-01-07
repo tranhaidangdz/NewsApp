@@ -11,11 +11,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.core.view.WindowCompat
 import com.loc.newsapp.ui.theme.NewsAppTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        WindowCompat.setDecorFitsSystemWindows(window,false) // tắt thanh header ở đầu màn hình app đi , ta phải khai báo thêm trong theme nữa
         installSplashScreen()  //khởi chạy splash screen trước khi chạy app chính(đây là 1 extension funtion của android)
         setContent {
             NewsAppTheme {
