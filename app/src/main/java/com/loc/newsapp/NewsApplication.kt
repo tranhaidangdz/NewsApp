@@ -56,11 +56,13 @@ Tại sao bản chất này lại quan trọng?
 Nếu không có DI, code của bạn giống như một chuỗi mắt xích bị hàn chết vào nhau. Nếu một mắt xích hỏng hoặc cần thay thế, bạn phải cắt bỏ toàn bộ sợi dây.
 =============================================================================================
 CÁC ANOTATION(CHÚ THÍCH)  CỦA THƯ VIÊN DAGGER HILT : @HiltAndroidApp, @Inject, @Module
-Để hiểu các Annotation này, bạn hãy tưởng tượng Dagger Hilt giống như một hệ thống quản lý kho tự động. Các Annotation chính là những "lệnh chỉ dẫn" để hệ thống này biết cách vận hành.
+Để hiểu các Annotation này, bạn hãy tưởng tượng Dagger Hilt giống như một hệ thống quản lý kho tự động.
+Các Annotation chính là những "lệnh chỉ dẫn" để hệ thống này biết cách vận hành.
 
 Dưới đây là ý nghĩa chi tiết của từng loại:
 
 1. @HiltAndroidApp (Nút nguồn hệ thống)
+
 Vị trí: Đặt phía trên lớp Application của bạn.
 Bản chất: Đây là Annotation quan trọng nhất để kích hoạt Hilt. Nó biến lớp Application của bạn thành một "Container" (thùng chứa) gốc.
 Tác dụng: Khi bạn thêm nó, Hilt sẽ tự động tạo ra các thành phần cần thiết để quản lý vòng đời của các đối tượng trong toàn bộ ứng dụng.
