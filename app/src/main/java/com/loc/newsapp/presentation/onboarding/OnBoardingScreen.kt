@@ -19,12 +19,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import com.loc.newsapp.presentation.Dimens.MediumPadding2
 import com.loc.newsapp.presentation.Dimens.PageIndicatorWidth
 import com.loc.newsapp.presentation.common.NewsButton
 import com.loc.newsapp.presentation.common.NewsTextButton
 import com.loc.newsapp.presentation.onboarding.components.OnBoardingPage
 import com.loc.newsapp.presentation.onboarding.components.PageIndicator
+import com.loc.newsapp.ui.theme.NewsAppTheme
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -51,10 +53,7 @@ fun OnBoardingScreen() {
             remember {  //remember : Giữ giá trị buttonState trong suốt vòng đời composable
                 derivedStateOf {  ////derivedStateOf: 1 State phụ thuộc từ state khác ; buttonState phụ thuộc vào: pagerState.currentPage(Chỉ recompose khi currentPage thay đổi Giúp tối ưu hiệu năng)
                     when (pagerState.currentPage) {  //when (pagerState.currentPage)  => Dựa vào trang hiện tại, quyết định nội dung nút:
-                        0 -> listOf(
-                            "",
-                            "Next"
-                        )  // 0-> : trang 0,1,2... thì nút trai rỗng nút phải có ND là "next"
+                        0 -> listOf("", "Next")  // 0-> : trang 0,1,2... thì nút trai rỗng nút phải có ND là "next"
                         1 -> listOf("Back", "Next")
                         2 -> listOf("Back", "Get Started")
                         else -> listOf("", "")
@@ -120,7 +119,7 @@ fun OnBoardingScreen() {
 
                 if (buttonState.value[0].isNotEmpty())  //Nếu buttonState.value[0] không rỗng(tức là có ND bên trái ko rỗng, VD = "back" )
                 {
-                    NewsTextButton(
+                    NewsTextButton (
                         text = buttonState.value[0],  //gán chữ trên nút là buttonState.value[0] => gán chữ "báck" lên nút
                         onClick = {  //khi bấm vào nút đó thì thay đổi trạng thái =  lanch
                             scope.launch {
@@ -134,8 +133,8 @@ fun OnBoardingScreen() {
                     text = buttonState.value[1],  //gtri bên phải cua nút buttonState. có thể là "navigateToHome " hoặc "next"
                     onClick = {
                         scope.launch {
-                            if (pagerState.currentPage == 3) {
-                                //TODO: Navigate to Home Screen: nếu gtri bấm trên pagerState = 3 tức là "navigateToHome"
+                            if (pagerState.currentPage == pages.size - 1) {
+                                //TODO: Navigate to Home Screen: nếu gtri bấm trên pagerState = trang cuoi cùng tức là "navigateToHome"
                             } else {
                                 pagerState.animateScrollToPage(
                                     page = pagerState.currentPage + 1  // nếu gtri bấm là "next" thì ta chuyển tranh mới = currentPage + 1
@@ -149,5 +148,13 @@ fun OnBoardingScreen() {
 
         }
         Spacer(modifier = Modifier.weight(0.5f))  //tăng kcach so với lề dưới cùng 
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun OnBoardingScreenPreview() {
+    NewsAppTheme {
+        OnBoardingScreen()
     }
 }

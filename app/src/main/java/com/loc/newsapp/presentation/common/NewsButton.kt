@@ -49,7 +49,7 @@ fun NewsTextButton(
         Text(
             text = text,
             style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.SemiBold,
-            color = Color.White
+            color = Color(0xFF4B95F7)
             )
         )
     }
